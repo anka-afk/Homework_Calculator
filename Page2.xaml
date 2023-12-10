@@ -1,0 +1,117 @@
+﻿<Page x:Class="Homework_Calculator.Page2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:hc="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+      xmlns:local="clr-namespace:Homework_Calculator"
+      mc:Ignorable="d" 
+       Title="计算器标准模式" Height="800" Width="600">
+
+
+    <Grid Background="White">
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <hc:FlexPanel HorizontalAlignment = "Center">
+            <Viewbox Stretch="Uniform" >
+
+                <Grid Height="474">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="15*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Upper Section: Mode Selection -->
+
+                    <!-- Middle Section: Input TextBox -->
+                    <TextBox x:Name="textBox" VerticalAlignment="Top" Margin="69,-112,0,0" FontSize="40" HorizontalAlignment = "Left" Width="553" Height="110" Grid.ColumnSpan="4" />
+
+                    <Grid Grid.ColumnSpan="4">
+                        <TextBox x:Name="textbox" Margin="0,0,0,252" />
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ListBox x:Name="historyListBox" SelectionMode="Single" HorizontalContentAlignment="Stretch" Height="229" VerticalAlignment="Top">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding}" />
+                                            <Button Content="Jump" Click="JumpToHistory_Click" Grid.Column="1" Tag="{Binding}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ScrollViewer>
+                    </Grid>
+
+
+
+                    <!-- Bottom Section: Number and Operator Buttons -->
+                    <Viewbox Margin="12,237,-4,-141" Grid.ColumnSpan="4">
+                        <UniformGrid Rows="5" Columns="6" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10">
+
+                            <Button x:Name="Button_LeftBracket" Content="(" Command="{Binding LeftBracketButtonCommand}" Margin="-1" Click="Button_LeftBracket_Click"/>
+                            <Button x:Name="Button_RightBracket" Content=")" Command="{Binding RightBracketButtonCommand}" Margin="-1" Click="Button_RightBracket_Click"/>
+                            <Button x:Name="Button_factorial" Content="!" Command="{Binding FactorialButtonCommand}" Margin="-1" Click="Button_factorial_Click"/>
+                            <Button x:Name="Button_remainder" Content="%" Command="{Binding PercentButtonCommand}" Margin="-1" Click="Button_remainder_Click"/>
+                            <Button x:Name="Button_power" Content="^" Command="{Binding PowerButtonCommand}" Margin="-1" Click="Button_power_Click"/>
+
+                            <Button x:Name="Button_sqrt" Content="√" Command="{Binding SqrtButtonCommand}" Margin="-1" Click="Button_sqrt_Click"/>
+                            <Button x:Name="Button_log" Content="log" Command="{Binding LogButtonCommand}"  Margin="-1" Click="Button_log_Click"/>
+                            <Button x:Name="Button_sin" Content="sin" Command="{Binding SinButtonCommand}"  Margin="-1" Click="Button_sin_Click"/>
+                            <Button x:Name="Button_cos" Content="cos" Command="{Binding CosButtonCommand}"  Margin="-1" Click="Button_cos_Click"/>
+                            <Button x:Name="Button_tan" Content="tan" Command="{Binding TanButtonCommand}"  Margin="-1" Click="Button_tan_Click"/>
+                            <Button x:Name="Button_abs" Content="abs" Command="{Binding AbsButtonCommand}" Margin="-1" Click="Button_abs_Click"/>
+
+
+                            <Button x:Name="Button_clear" Content="C" Command="{Binding ClearButtonCommand}"  Margin="-1" Click="Button_clear_Click"/>
+                            <Button x:Name="Button_ln" Content="ln" Command="{Binding LnButtonCommand}"  Margin="-1" Click="Button_ln_Click"/>
+                            <Button x:Name="Button_7" Content="7" Command="{Binding NumericButtonCommand}" CommandParameter="7" Margin="-1" Click="Button_7_Click"/>
+                            <Button x:Name="Button_8" Content="8" Command="{Binding NumericButtonCommand}" CommandParameter="8" Margin="-1" Click="Button_8_Click"/>
+                            <Button x:Name="Button_9" Content="9" Command="{Binding NumericButtonCommand}" CommandParameter="9" Margin="-1" Click="Button_9_Click"/>
+                            <Button x:Name="Button_times" Content="*" Command="{Binding OperationButtonCommand}" CommandParameter="*" Margin="-1" Click="Button_times_Click"/>
+                            <Button x:Name="Button_division" Content="/" Command="{Binding OperationButtonCommand}" CommandParameter="/" Margin="-1" Click="Button_division_Click"/>
+
+
+                            <Button x:Name="Button_dot" Content="." Command="{Binding DotButtonCommand}" CommandParameter="." Margin="-1" Click="Button_dot_Click"/>
+
+                            <Button x:Name="Button_4" Content="4" Command="{Binding NumericButtonCommand}" CommandParameter="4" Margin="-1" Click="Button_4_Click"/>
+                            <Button x:Name="Button_5" Content="5" Command="{Binding NumericButtonCommand}" CommandParameter="5" Margin="-1" Click="Button_5_Click"/>
+                            <Button x:Name="Button_6" Content="6" Command="{Binding NumericButtonCommand}" CommandParameter="6" Margin="-1" Click="Button_6_Click"/>
+
+
+
+                            <Button x:Name="Button_plus" Content="+" Command="{Binding OperationButtonCommand}" CommandParameter="+" Margin="-1" Click="Button_plus_Click"/>
+
+
+                            <Button x:Name="Button_sub" Content="-" Command="{Binding OperationButtonCommand}" CommandParameter="-" Margin="-1" Click="Button_sub_Click"/>
+                            <Button x:Name="Button_0" Content="0" Command="{Binding NumericButtonCommand}" CommandParameter="0" Margin="-1" Click="Button_0_Click"/>
+                            <Button x:Name="Button_1" Content="1" Command="{Binding NumericButtonCommand}" CommandParameter="1" Click="Button_1_Click"/>
+                            <Button x:Name="Button_2" Content="2" Command="{Binding NumericButtonCommand}" CommandParameter="2" Margin="-1" Click="Button_2_Click"/>
+                            <Button x:Name="Button_3" Content="3" Command="{Binding NumericButtonCommand}" CommandParameter="3" Margin="-1" Click="Button_3_Click"/>
+
+
+
+
+                            <Button x:Name="Button_back" Content="Back" Command="{Binding BackButtonCommand}" Margin="-1" Click="Button_back_Click"/>
+                            <Button x:Name="Button_equal" Content="=" Command="{Binding EqualsButtonCommand}" CommandParameter="=" Margin="-1" Click="Button_equal_Click"/>
+
+                        </UniformGrid>
+                    </Viewbox>
+                    <Viewbox Margin="12,615,-4,-208" Grid.ColumnSpan="4"/>
+                </Grid>
+            </Viewbox>
+        </hc:FlexPanel>
+    </Grid>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+</Page>
